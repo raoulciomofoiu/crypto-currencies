@@ -1,6 +1,8 @@
 <template>
-  <h1>Crypto Currencies</h1>
-  <router-view />
+  <div class="app">
+    <div class="banner"></div>
+    <router-view />
+  </div>
 </template>
 
 <style>
@@ -23,5 +25,13 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.banner {
+  width: 100%;
+  height: 150px;
+  background-image: url('@/assets/banner.webp');
+  background-position: center;
+  background-size: cover;
 }
 </style>

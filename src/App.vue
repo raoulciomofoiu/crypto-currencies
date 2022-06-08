@@ -1,6 +1,10 @@
 <template>
   <div class="app">
     <div class="banner"></div>
+    <nav>
+      <router-link :to="{ name: 'CryptoList' }">Main Page</router-link>
+      <router-link :to="{ name: 'Wallet' }">Wallet</router-link>
+    </nav>
     <router-view />
   </div>
 </template>
@@ -15,16 +19,17 @@
 }
 
 nav {
-  padding: 30px;
+  padding: 40px;
 }
 
 nav a {
+  padding-right: 20px;
   font-weight: bold;
-  color: #2c3e50;
+  color: black;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: chocolate;
 }
 
 .banner {

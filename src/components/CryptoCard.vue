@@ -1,6 +1,6 @@
 <template>
   <router-link 
-    :to="{ name: 'CryptoDetails', params: { id: crypto.id, name: crypto.name, image: crypto.image, price: crypto.price, marketCap: crypto.marketCap }}"
+    :to="{ name: 'CryptoDetails', params: { id: crypto.id, name: crypto.name, image: crypto.image, price: crypto.price, symbol: crypto.symbol }}"
     class="crypto-link">
     <div class="crypto-card">
       <p style="font-style: italic; font-size:larger; font-weight:bold; color:crimson">{{ crypto.name }}</p>

@@ -6,14 +6,13 @@
       </span>
       {{ name }}
     </h1>
-    <h3>Price: {{ price }} $</h3>
-    <p>MarketCap: {{ marketCap }} $</p>
+    <h3>{{ symbol }} price: {{ price }} $</h3>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['id', 'name', 'image', 'price', 'marketCap']
+  props: ['id', 'name', 'image', 'price', 'symbol']
 }
 </script>
 

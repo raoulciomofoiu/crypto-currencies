@@ -23,79 +23,69 @@ export default createStore({
         image: 'bitcoin.png',
         symbol: 'BTC',
         price: 30430.57, 
-        marketCap: 1000000000
       },
       {
         id: uuidv4(),
         name: 'Ethereum',
         image: 'ethereum.png',
         symbol: 'ETH',
-        price: 30000,
-        marketCap: 1000000000
+        price: 1798.07,
       },
       {
         id: uuidv4(),
         name: 'Tether',
         image: 'usdt.png',
         symbol: 'USDT',
-        price: 30000,
-        marketCap: 1000000000
+        price: 0.9996,
       },
       {
         id: uuidv4(),
         name: 'USD Coin',
         image: 'usdc.png',
         symbol: 'USDC',
-        price: 30000,
-        marketCap: 1000000000
+        price: 1,
       },
       {
         id: uuidv4(),
         name: 'BNB',
         image: 'bnb.png',
         symbol: 'BNB',
-        price: 30000,
-        marketCap: 1000000000
+        price: 292.63,
       },
       {
         id: uuidv4(),
         name: 'Cardano',
         image: 'ada.png',
         symbol: 'ADA',
-        price: 30000,
-        marketCap: 1000000000
+        price: 0.6389,
       },
       {
         id: uuidv4(),
         name: 'XRP',
         image: 'xrp.png',
         symbol: 'XRP',
-        price: 30000,
-        marketCap: 1000000000
+        price: 0.4011,
       },
       {
         id: uuidv4(),
         name: 'Binance USD',
         image: 'busd.png',
         symbol: 'BUSD',
-        price: 30000,
-        marketCap: 1000000000
+        price: 0.9999,
       },
       {
         id: uuidv4(),
         name: 'Solana',
         image: 'sol.png',
         symbol: 'SOL',
-        price: 30000,
-        marketCap: 1000000000
+        price: 39.43,
       },
       {
         id: uuidv4(),
         name: 'Dogecoin',
         image: 'doge.png',
         symbol: 'DOGE',
-        price: 30000,
-        marketCap: 1000000000
+        price: 0.0803,
       }
     ],
   },
@@ -104,6 +94,33 @@ export default createStore({
   getters: {
     btcAmount (state) {
       return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[1].BTC_PRICE
+    },
+    ethAmount (state) {
+      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[2].ETH_PRICE
+    },
+    usdtAmount (state) {
+      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[3].USDT_PRICE
+    },
+    usdcAmount (state) {
+      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[4].USDC_PRICE
+    },
+    bnbAmount (state) {
+      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[5].BNB_PRICE
+    },
+    adaAmount (state) {
+      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[6].ADA_PRICE
+    },
+    xrpAmount (state) {
+      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[7].XRP_PRICE
+    },
+    busdAmount (state) {
+      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[8].BUSD_PRICE
+    },
+    solAmount (state) {
+      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[9].SOL_PRICE
+    },
+    dogeAmount (state) {
+      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[10].DOGE_PRICE
     }
   },
   modules: {},

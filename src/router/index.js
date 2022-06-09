@@ -1,25 +1,25 @@
-import { createRouter, createWebHistory } from "vue-router";
-import CryptoList from "../views/CryptoList.vue";
-import CryptoDetails from "@/views/CryptoDetails.vue";
-import Wallet from "@/views/Wallet.vue"
+import { createRouter, createWebHistory } from 'vue-router';
+import CryptoList from '../views/CryptoList.vue';
+import CryptoDetails from '@/views/CryptoDetails.vue';
+import Wallet from '@/views/Wallet.vue';
 
 const routes = [
   {
-    path: "/",
-    name: "CryptoList",
+    path: '/',
+    name: 'CryptoList',
     component: CryptoList,
   },
   {
-    path: "/crypto/:id",
-    name: "CryptoDetails",
+    path: '/crypto/:id',
+    name: 'CryptoDetails',
     props: true,
-    component: CryptoDetails
+    component: CryptoDetails,
   },
   {
-    path: "/wallet",
-    name: "Wallet",
-    component: Wallet
-  }
+    path: '/wallet',
+    name: 'Wallet',
+    component: Wallet,
+  },
 ];
 
 const router = createRouter({

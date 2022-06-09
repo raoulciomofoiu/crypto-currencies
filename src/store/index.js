@@ -6,6 +6,7 @@ export default createStore({
     fiatBalance: 0,
     cryptos: [
       {
+        //obiecte
         id: uuidv4(),
         name: 'Bitcoin',
         image: 'bitcoin.png',

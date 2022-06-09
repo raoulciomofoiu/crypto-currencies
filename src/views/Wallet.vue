@@ -3,7 +3,7 @@
     <li>
       <span>
         {{ btcName }} ~
-        {{ btcAmount2 }}
+        {{ btcAmount }}
         {{ btcSymbol }}
         &nbsp; &nbsp;
         <input type="number" v-model="sellValueBtc" />
@@ -16,8 +16,8 @@
         {{ ethAmount }}
         {{ ethSymbol }}
         &nbsp; &nbsp;
-        <input type="number" v-model="sellValue" />
-        <button>SELL</button>
+        <input type="number" v-model="sellValueEth" />
+        <button @click="sellEth(sellValueEth)">SELL</button>
       </span>
     </li>
     <li>
@@ -26,8 +26,8 @@
         {{ usdtAmount }}
         {{ usdtSymbol }}
         &nbsp; &nbsp;
-        <input type="number" v-model="sellValue" />
-        <button>SELL</button>
+        <input type="number" v-model="sellValueUsdt" />
+        <button @click="sellUsdt(sellValueUsdt)">SELL</button>
       </span>
     </li>
     <li>
@@ -36,8 +36,8 @@
         {{ usdcAmount }}
         {{ usdcSymbol }}
         &nbsp; &nbsp;
-        <input type="number" v-model="sellValue" />
-        <button>SELL</button>
+        <input type="number" v-model="sellValueUsdc" />
+        <button @click="sellUsdc(sellValueUsdc)">SELL</button>
       </span>
     </li>
     <li>
@@ -46,8 +46,8 @@
         {{ bnbAmount }}
         {{ bnbSymbol }}
         &nbsp; &nbsp;
-        <input type="number" v-model="sellValue" />
-        <button>SELL</button>
+        <input type="number" v-model="sellValueBnb" />
+        <button @click="sellBnb(sellValueBnb)">SELL</button>
       </span>
     </li>
     <li>
@@ -56,8 +56,8 @@
         {{ adaAmount }}
         {{ adaSymbol }}
         &nbsp; &nbsp;
-        <input type="number" v-model="sellValue" />
-        <button>SELL</button>
+        <input type="number" v-model="sellValueAda" />
+        <button @click="sellAda(sellValueAda)">SELL</button>
       </span>
     </li>
     <li>
@@ -66,8 +66,8 @@
         {{ xrpAmount }}
         {{ xrpSymbol }}
         &nbsp; &nbsp;
-        <input type="number" v-model="sellValue" />
-        <button>SELL</button>
+        <input type="number" v-model="sellValueXrp" />
+        <button @click="sellXrp(sellValueXrp)">SELL</button>
       </span>
     </li>
     <li>
@@ -76,8 +76,8 @@
         {{ busdAmount }}
         {{ busdSymbol }}
         &nbsp; &nbsp;
-        <input type="number" v-model="sellValue" />
-        <button>SELL</button>
+        <input type="number" v-model="sellValueBusd" />
+        <button @click="sellBusd(sellValueBusd)">SELL</button>
       </span>
     </li>
     <li>
@@ -86,8 +86,8 @@
         {{ solAmount }}
         {{ solSymbol }}
         &nbsp; &nbsp;
-        <input type="number" v-model="sellValue" />
-        <button>SELL</button>
+        <input type="number" v-model="sellValueSol" />
+        <button @click="sellSol(sellValueSol)">SELL</button>
       </span>
     </li>
     <li>
@@ -96,8 +96,8 @@
         {{ dogeAmount }}
         {{ dogeSymbol }}
         &nbsp; &nbsp;
-        <input type="number" v-model="sellValue" />
-        <button>SELL</button>
+        <input type="number" v-model="sellValueDoge" />
+        <button @click="sellDoge(sellValueDoge)">SELL</button>
       </span>
     </li>
   </ul>
@@ -110,17 +110,50 @@ export default {
   data() {
     return {
       sellValueBtc: 0,
+      sellValueEth: 0,
+      sellValueUsdt: 0,
+      sellValueUsdc: 0,
+      sellValueBnb: 0,
+      sellValueAda: 0,
+      sellValueXrp: 0,
+      sellValueBusd: 0,
+      sellValueSol: 0,
+      sellValueDoge: 0,
     };
   },
   methods: {
     sellBtc(sellValueBtc) {
       this.$store.dispatch('sellBtc', sellValueBtc);
     },
+    sellEth(sellValueEth) {
+      this.$store.dispatch('sellEth', sellValueEth);
+    },
+    sellUsdt(sellValueUsdt) {
+      this.$store.dispatch('sellUsdt', sellValueUsdt);
+    },
+    sellUsdc(sellValueUsdc) {
+      this.$store.dispatch('sellUsdc', sellValueUsdc);
+    },
+    sellBnb(sellValueBnb) {
+      this.$store.dispatch('sellBnb', sellValueBnb);
+    },
+    sellAda(sellValueAda) {
+      this.$store.dispatch('sellAda', sellValueAda);
+    },
+    sellXrp(sellValueXrp) {
+      this.$store.dispatch('sellXrp', sellValueXrp);
+    },
+    sellBusd(sellValueBusd) {
+      this.$store.dispatch('sellBusd', sellValueBusd);
+    },
+    sellSol(sellValueSol) {
+      this.$store.dispatch('sellSol', sellValueSol);
+    },
+    sellDoge(sellValueDoge) {
+      this.$store.dispatch('sellDoge', sellValueDoge);
+    },
   },
   computed: {
-    btcAmount2() {
-      return this.$store.state.cryptos[0].amount;
-    },
     fiatBalance() {
       return this.$store.state.fiatBalance;
     },
@@ -128,7 +161,7 @@ export default {
       return this.$store.state.cryptos[0].name;
     },
     btcAmount() {
-      return this.$store.getters.btcAmount;
+      return this.$store.state.cryptos[0].amount;
     },
     btcSymbol() {
       return this.$store.state.cryptos[0].symbol;
@@ -137,7 +170,7 @@ export default {
       return this.$store.state.cryptos[1].name;
     },
     ethAmount() {
-      return this.$store.getters.ethAmount;
+      return this.$store.state.cryptos[1].amount;
     },
     ethSymbol() {
       return this.$store.state.cryptos[1].symbol;
@@ -146,7 +179,7 @@ export default {
       return this.$store.state.cryptos[2].name;
     },
     usdtAmount() {
-      return this.$store.getters.usdtAmount;
+      return this.$store.state.cryptos[2].amount;
     },
     usdtSymbol() {
       return this.$store.state.cryptos[2].symbol;
@@ -155,7 +188,7 @@ export default {
       return this.$store.state.cryptos[3].name;
     },
     usdcAmount() {
-      return this.$store.getters.usdcAmount;
+      return this.$store.state.cryptos[3].amount;
     },
     usdcSymbol() {
       return this.$store.state.cryptos[3].symbol;
@@ -164,7 +197,7 @@ export default {
       return this.$store.state.cryptos[4].name;
     },
     bnbAmount() {
-      return this.$store.getters.bnbAmount;
+      return this.$store.state.cryptos[4].amount;
     },
     bnbSymbol() {
       return this.$store.state.cryptos[4].symbol;
@@ -173,7 +206,7 @@ export default {
       return this.$store.state.cryptos[5].name;
     },
     adaAmount() {
-      return this.$store.getters.adaAmount;
+      return this.$store.state.cryptos[5].amount;
     },
     adaSymbol() {
       return this.$store.state.cryptos[5].symbol;
@@ -182,7 +215,7 @@ export default {
       return this.$store.state.cryptos[6].name;
     },
     xrpAmount() {
-      return this.$store.getters.xrpAmount;
+      return this.$store.state.cryptos[6].amount;
     },
     xrpSymbol() {
       return this.$store.state.cryptos[6].symbol;
@@ -191,7 +224,7 @@ export default {
       return this.$store.state.cryptos[7].name;
     },
     busdAmount() {
-      return this.$store.getters.busdAmount;
+      return this.$store.state.cryptos[7].amount;
     },
     busdSymbol() {
       return this.$store.state.cryptos[7].symbol;
@@ -200,7 +233,7 @@ export default {
       return this.$store.state.cryptos[8].name;
     },
     solAmount() {
-      return this.$store.getters.solAmount;
+      return this.$store.state.cryptos[8].amount;
     },
     solSymbol() {
       return this.$store.state.cryptos[8].symbol;
@@ -209,7 +242,7 @@ export default {
       return this.$store.state.cryptos[9].name;
     },
     dogeAmount() {
-      return this.$store.getters.dogeAmount;
+      return this.$store.state.cryptos[9].amount;
     },
     dogeSymbol() {
       return this.$store.state.cryptos[9].symbol;

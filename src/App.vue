@@ -26,6 +26,7 @@ nav a {
   padding-right: 20px;
   font-weight: bold;
   color: black;
+  font-size: larger;
 }
 
 nav a.router-link-exact-active {

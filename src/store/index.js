@@ -1,4 +1,4 @@
-import { createStore } from "vuex";
+import { createStore } from 'vuex';
 import { v4 as uuidv4 } from 'uuid';
 
 export default createStore({
@@ -14,7 +14,7 @@ export default createStore({
       { XRP_PRICE: 0.4011 },
       { BUSD_PRICE: 0.9999 },
       { SOL_PRICE: 39.43 },
-      { DOGE_PRICE: 0.0803 }
+      { DOGE_PRICE: 0.0803 },
     ],
     cryptos: [
       {
@@ -22,7 +22,8 @@ export default createStore({
         name: 'Bitcoin',
         image: 'bitcoin.png',
         symbol: 'BTC',
-        price: 30430.57, 
+        price: 30430.57,
+        amount: 100 / 30430.57,
       },
       {
         id: uuidv4(),
@@ -86,42 +87,61 @@ export default createStore({
         image: 'doge.png',
         symbol: 'DOGE',
         price: 0.0803,
-      }
+      },
     ],
+    fiatBalance: 0,
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    SET_AMOUNT_BTC(state, amount) {
+      state.cryptos[0].amount = amount;
+    },
+    SET_FIAT_BALANCE(state, fiatBalance) {
+      state.fiatBalance = fiatBalance;
+    },
+  },
+  actions: {
+    sellBtc({ commit, state }, sellValueBtc) {
+      const amount = state.cryptos[0].amount - sellValueBtc;
+      if (amount >= 0) {
+        commit('SET_AMOUNT_BTC', amount);
+      } else {
+        alert('Not enough balance');
+      }
+      const fiatAmount = state.fiatBalance + sellValueBtc * 30430.57;
+      commit('SET_FIAT_BALANCE', fiatAmount);
+    },
+  },
   getters: {
-    btcAmount (state) {
-      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[1].BTC_PRICE
+    btcAmount(state) {
+      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[1].BTC_PRICE;
     },
-    ethAmount (state) {
-      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[2].ETH_PRICE
+    ethAmount(state) {
+      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[2].ETH_PRICE;
     },
-    usdtAmount (state) {
-      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[3].USDT_PRICE
+    usdtAmount(state) {
+      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[3].USDT_PRICE;
     },
-    usdcAmount (state) {
-      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[4].USDC_PRICE
+    usdcAmount(state) {
+      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[4].USDC_PRICE;
     },
-    bnbAmount (state) {
-      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[5].BNB_PRICE
+    bnbAmount(state) {
+      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[5].BNB_PRICE;
     },
-    adaAmount (state) {
-      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[6].ADA_PRICE
+    adaAmount(state) {
+      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[6].ADA_PRICE;
     },
-    xrpAmount (state) {
-      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[7].XRP_PRICE
+    xrpAmount(state) {
+      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[7].XRP_PRICE;
     },
-    busdAmount (state) {
-      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[8].BUSD_PRICE
+    busdAmount(state) {
+      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[8].BUSD_PRICE;
     },
-    solAmount (state) {
-      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[9].SOL_PRICE
+    solAmount(state) {
+      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[9].SOL_PRICE;
     },
-    dogeAmount (state) {
-      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[10].DOGE_PRICE
-    }
+    dogeAmount(state) {
+      return state.defaultValues[0].INITIAL_FUNDS / state.defaultValues[10].DOGE_PRICE;
+    },
   },
   modules: {},
 });

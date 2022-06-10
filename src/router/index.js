@@ -10,7 +10,7 @@ const routes = [
     component: CryptoList,
   },
   {
-    path: '/crypto/:id',
+    path: '/crypto/:name',
     name: 'CryptoDetails',
     props: true,
     component: CryptoDetails,

@@ -105,16 +105,16 @@ export default createStore({
         case 'USD Coin':
           state.cryptos.usdc.amount = amount;
           break;
-        case 'Bnb':
+        case 'BNB':
           state.cryptos.bnb.amount = amount;
           break;
         case 'Cardano':
           state.cryptos.cardano.amount = amount;
           break;
-        case 'Xrp':
+        case 'XRP':
           state.cryptos.xrp.amount = amount;
           break;
-        case 'Busd':
+        case 'Binance USD':
           state.cryptos.busd.amount = amount;
           break;
         case 'Solana':
@@ -128,17 +128,20 @@ export default createStore({
   },
   actions: {
     sellCrypto({ commit, state }, { crypto, sellValue }) {
-      const amount = crypto.amount - sellValue;
-      console.log('remaining amount: ' + amount);
-      if (amount >= 0) {
-        commit('SET_CRYPTO_AMOUNT', { crypto, amount });
+      if (sellValue >= 0) {
+        const amount = crypto.amount - sellValue;
+        if (amount >= 0) {
+          commit('SET_CRYPTO_AMOUNT', { crypto, amount });
+        } else {
+          alert(`Not enough ${crypto.symbol} balance`);
+          return;
+        }
+        const fiatAmount = state.fiatBalance + sellValue * crypto.price;
+        commit('SET_FIAT_BALANCE', fiatAmount);
+        sellValue = 0;
       } else {
-        alert('Not enough balance');
-        return;
+        alert('Please enter a posivite number');
       }
-      const fiatAmount = state.fiatBalance + sellValue * crypto.price;
-      console.log('fiat :' + fiatAmount);
-      commit('SET_FIAT_BALANCE', fiatAmount);
     },
   },
   getters: {},

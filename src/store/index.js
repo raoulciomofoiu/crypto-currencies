@@ -125,6 +125,12 @@ export default createStore({
           break;
       }
     },
+    initialiseStore(state) {
+      console.log('init store');
+      if (localStorage.getItem('store')) {
+        this.replaceState(Object.assign(state, JSON.parse(localStorage.getItem('store'))));
+      }
+    },
   },
   actions: {
     sellCrypto({ commit, state }, { crypto, sellValue }) {

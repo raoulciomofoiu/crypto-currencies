@@ -30,6 +30,10 @@ export default {
         .map((entry) => entry[1]);
     },
   },
+  beforeCreate() {
+    console.log('before create');
+    this.$store.commit('initialiseStore');
+  },
 };
 </script>
 

@@ -9,7 +9,29 @@
   </div>
 </template>
 
+<!-- Composition API -->
+
 <script>
+import { ref } from 'vue';
+
+export default {
+  props: {
+    crypto: Object,
+    sellCrypto: Function,
+  },
+  setup() {
+    const sellValue = ref(0);
+
+    return {
+      sellValue,
+    };
+  },
+};
+</script>
+
+<!-- Options API -->
+
+<!-- <script>
 export default {
   props: ['crypto', 'sellCrypto'],
   data() {
@@ -18,7 +40,7 @@ export default {
     };
   },
 };
-</script>
+</script> -->
 
 <style scoped>
 .entry {

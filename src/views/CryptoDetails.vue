@@ -2,7 +2,7 @@
   <div class="details">
     <h1>
       <span>
-        <img :src="require(`../assets/${image}`)" alt="">
+        <img :src="require(`../assets/${image}`)" alt="" />
       </span>
       {{ name }}
     </h1>
@@ -10,11 +10,21 @@
   </div>
 </template>
 
+<!-- Composition API -->
+
 <script>
 export default {
-  props: ['id', 'name', 'image', 'price', 'symbol']
-}
+  props: ['id', 'name', 'image', 'price', 'symbol'], // Or with defineProps()
+};
 </script>
+
+<!-- Options API -->
+
+<!-- <script>
+export default {
+  props: ['id', 'name', 'image', 'price', 'symbol'],
+};
+</script> -->
 
 <style scoped>
 img {

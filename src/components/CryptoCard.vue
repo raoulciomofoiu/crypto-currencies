@@ -1,24 +1,43 @@
 <template>
-  <router-link 
-    :to="{ name: 'CryptoDetails', params: { id: crypto.id, name: crypto.name, image: crypto.image, price: crypto.price, symbol: crypto.symbol }}"
-    class="crypto-link">
+  <router-link
+    :to="{
+      name: 'CryptoDetails',
+      params: { id: crypto.id, name: crypto.name, image: crypto.image, price: crypto.price, symbol: crypto.symbol },
+    }"
+    class="crypto-link"
+  >
     <div class="crypto-card">
-      <p style="font-style: italic; font-size:larger; font-weight:bold; color:crimson">{{ crypto.name }}</p>
-      <img :src="require(`../assets/${crypto.image}`)" alt="">
+      <p style="font-style: italic; font-size: larger; font-weight: bold; color: crimson">{{ crypto.name }}</p>
+      <img :src="require(`../assets/${crypto.image}`)" alt="" />
     </div>
   </router-link>
 </template>
 
-<script>
+<!-- Composition API -->
+
+<script setup>
+import { defineProps } from 'vue';
+
+const props = defineProps({
+  crypto: {
+    type: Object,
+    requred: true,
+  },
+});
+</script>
+
+<!-- Options API -->
+
+<!-- <script>
 export default {
   props: {
     crypto: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
 };
-</script>
+</script> -->
 
 <style scoped>
 .crypto-link {

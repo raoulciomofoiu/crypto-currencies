@@ -134,20 +134,20 @@ export default createStore({
   },
   actions: {
     sellCrypto({ commit, state }, { crypto, sellValue }) {
-      if (sellValue >= 0) {
-        const amount = crypto.amount - sellValue;
-        if (amount >= 0) {
-          commit('SET_CRYPTO_AMOUNT', { crypto, amount });
-        } else {
-          alert(`Not enough ${crypto.symbol} balance`);
-          return;
-        }
-        const fiatAmount = state.fiatBalance + sellValue * crypto.price;
-        commit('SET_FIAT_BALANCE', fiatAmount);
-        sellValue = 0;
-      } else {
+      if (sellValue < 0) {
         alert('Please enter a posivite number');
+        return;
       }
+      const amount = crypto.amount - sellValue;
+      if (amount >= 0) {
+        commit('SET_CRYPTO_AMOUNT', { crypto, amount });
+      } else {
+        alert(`Not enough ${crypto.symbol} balance`);
+        return;
+      }
+      const fiatAmount = state.fiatBalance + sellValue * crypto.price;
+      commit('SET_FIAT_BALANCE', fiatAmount);
+      sellValue = 0;
     },
   },
   getters: {},

@@ -6,7 +6,35 @@
   <div class="sold">My Balance: {{ fiatBalance }} $</div>
 </template>
 
+<!-- Composition API -->
+
 <script>
+import WalletEntry from '@/components/WalletEntry.vue';
+import { useStore } from 'vuex';
+import { computed } from 'vue';
+
+export default {
+  components: { WalletEntry },
+  setup() {
+    const store = useStore();
+
+    const cryptos = computed(() => store.state.cryptos);
+    const fiatBalance = computed(() => store.state.fiatBalance);
+
+    const sellCrypto = (crypto, sellValue) => store.dispatch('sellCrypto', { crypto, sellValue });
+
+    return {
+      cryptos,
+      fiatBalance,
+      sellCrypto,
+    };
+  },
+};
+</script>
+
+<!-- Options API -->
+
+<!-- <script>
 import WalletEntry from '@/components/WalletEntry.vue';
 
 export default {
@@ -25,7 +53,7 @@ export default {
   },
   components: { WalletEntry },
 };
-</script>
+</script> -->
 
 <style scoped>
 .sold {

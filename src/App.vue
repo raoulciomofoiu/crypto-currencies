@@ -18,7 +18,38 @@
   </div>
 </template>
 
+<!-- Composition API -->
+
 <script>
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+
+export default {
+  setup() {
+    const store = useStore();
+
+    console.log('before create');
+    store.commit('initialiseStore');
+
+    const cryptos = computed(() => store.state.cryptos);
+
+    const slicedCryptos = computed(() => {
+      return Object.entries(store.state.cryptos)
+        .slice(0, 3)
+        .map((entry) => entry[1]);
+    });
+
+    return {
+      cryptos,
+      slicedCryptos,
+    };
+  },
+};
+</script>
+
+<!-- Options API -->
+
+<!-- <script>
 export default {
   computed: {
     cryptos() {
@@ -35,7 +66,7 @@ export default {
     this.$store.commit('initialiseStore');
   },
 };
-</script>
+</script> -->
 
 <style>
 #app {
